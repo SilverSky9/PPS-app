@@ -148,7 +148,8 @@
             return;
         }
 
-        const ppsScore = (ambulatory + activity + selfCare + oralIntake + consciousness) / 5;
+        const rawScore = (ambulatory + activity + selfCare + oralIntake + consciousness) / 5;
+        const ppsScore = Math.round(rawScore / 10) * 10;
         document.getElementById('result').textContent = `คะแนน PPS ที่คำนวณได้: ${ppsScore}%`;
 
         const indicator = document.getElementById('indicator');
