@@ -1,15 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palliative Performance Scale Form</title>
+    <title>แบบฟอร์มการประเมินสมรรถภาพผู้ป่วยระยะประคับประคอง (PPS)</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Sarabun', sans-serif;
             margin: 20px;
             padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
             line-height: 1.6;
+        }
+        h1 {
+            color: #007BFF;
         }
         .form-group {
             margin-bottom: 15px;
@@ -17,87 +22,117 @@
         label {
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
         }
         select {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 16px;
         }
         button {
-            padding: 10px 15px;
+            padding: 10px 20px;
             background-color: #007BFF;
             color: white;
             border: none;
+            border-radius: 5px;
             cursor: pointer;
+            font-size: 16px;
         }
         button:hover {
             background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .color-bar {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, red, orange, yellow, green, blue);
+            border-radius: 5px;
+            margin-top: 20px;
+            position: relative;
+        }
+        .indicator {
+            position: absolute;
+            top: 0;
+            height: 30px;
+            width: 2px;
+            background-color: black;
         }
     </style>
 </head>
 <body>
 
-<h1>Palliative Performance Scale (PPS) Form</h1>
+<h1>แบบฟอร์มการประเมินสมรรถภาพผู้ป่วยระยะประคับประคอง (PPS)</h1>
 
 <form id="ppsForm">
     <div class="form-group">
-        <label for="ambulatory">1. How ambulatory is this patient?</label>
+        <label for="ambulatory">1. ผู้ป่วยสามารถเคลื่อนไหวได้อย่างไร?</label>
         <select id="ambulatory" required>
-            <option value="">Select</option>
-            <option value="100">Full</option>
-            <option value="90">Reduced</option>
-            <option value="70">Mainly sit/lie</option>
-            <option value="50">Mainly in bed</option>
-            <option value="30">Totally bed bound</option>
+            <option value="">เลือก</option>
+            <option value="100">เต็มที่</option>
+            <option value="90">ลดลง</option>
+            <option value="70">นั่ง/นอนเป็นส่วนใหญ่</option>
+            <option value="50">นอนเป็นหลัก</option>
+            <option value="30">นอนติดเตียงทั้งหมด</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="activity">2. What is the patient's daily level of activity? Is there any evidence of disease?</label>
+        <label for="activity">2. ระดับกิจกรรมประจำวันของผู้ป่วยเป็นอย่างไร? มีหลักฐานของโรคหรือไม่?</label>
         <select id="activity" required>
-            <option value="">Select</option>
-            <option value="100">Normal activity</option>
-            <option value="80">Reduced activity</option>
-            <option value="60">Significant disease</option>
-            <option value="40">Mainly sit/lie</option>
-            <option value="20">Bed bound</option>
+            <option value="">เลือก</option>
+            <option value="100">กิจกรรมปกติ</option>
+            <option value="80">กิจกรรมลดลง</option>
+            <option value="60">โรคมาก</option>
+            <option value="40">นั่ง/นอนเป็นหลัก</option>
+            <option value="20">นอนติดเตียง</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="selfCare">3. How much self-care assistance does this patient require?</label>
+        <label for="selfCare">3. ผู้ป่วยต้องการความช่วยเหลือในการดูแลตนเองมากแค่ไหน?</label>
         <select id="selfCare" required>
-            <option value="">Select</option>
-            <option value="100">Full</option>
-            <option value="80">Occasional assistance</option>
-            <option value="60">Considerable assistance</option>
-            <option value="40">Mainly assistance</option>
-            <option value="20">Total care</option>
+            <option value="">เลือก</option>
+            <option value="100">ดูแลตนเองได้เต็มที่</option>
+            <option value="80">ต้องการความช่วยเหลือเป็นครั้งคราว</option>
+            <option value="60">ต้องการความช่วยเหลือมาก</option>
+            <option value="40">ต้องการความช่วยเหลือเป็นหลัก</option>
+            <option value="20">ต้องการการดูแลทั้งหมด</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="oralIntake">4. How much oral intake does this patient have?</label>
+        <label for="oralIntake">4. การรับประทานอาหารของผู้ป่วยเป็นอย่างไร?</label>
         <select id="oralIntake" required>
-            <option value="">Select</option>
-            <option value="100">Normal</option>
-            <option value="80">Reduced</option>
-            <option value="60">Minimal</option>
-            <option value="40">Sips only</option>
-            <option value="20">Mouth care only</option>
+            <option value="">เลือก</option>
+            <option value="100">ปกติ</option>
+            <option value="80">ลดลง</option>
+            <option value="60">น้อยมาก</option>
+            <option value="40">จิบน้ำเท่านั้น</option>
+            <option value="20">ดูแลช่องปากเท่านั้น</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="consciousness">5. What is this patient's level of consciousness?</label>
+        <label for="consciousness">5. ระดับการรับรู้ของผู้ป่วยเป็นอย่างไร?</label>
         <select id="consciousness" required>
-            <option value="">Select</option>
-            <option value="100">Full</option>
-            <option value="80">Confusion</option>
-            <option value="60">Drowsy</option>
-            <option value="40">Coma</option>
-            <option value="20">None</option>
+            <option value="">เลือก</option>
+            <option value="100">เต็มที่</option>
+            <option value="80">สับสน</option>
+            <option value="60">ง่วงนอน</option>
+            <option value="40">ไม่รู้สึกตัว</option>
+            <option value="20">ไม่มี</option>
         </select>
     </div>
-    <button type="button" onclick="calculatePPS()">Calculate Risk</button>
+    <button type="button" onclick="calculatePPS()">คำนวณความเสี่ยง</button>
 </form>
 
+<div class="color-bar">
+    <div id="indicator" class="indicator" style="left: 0%;"></div>
+</div>
 <p id="result"></p>
 
 <script>
@@ -109,12 +144,15 @@
         const consciousness = parseInt(document.getElementById('consciousness').value);
 
         if (isNaN(ambulatory) || isNaN(activity) || isNaN(selfCare) || isNaN(oralIntake) || isNaN(consciousness)) {
-            document.getElementById('result').textContent = 'Please fill out all fields.';
+            document.getElementById('result').textContent = 'กรุณากรอกข้อมูลให้ครบถ้วน';
             return;
         }
 
         const ppsScore = (ambulatory + activity + selfCare + oralIntake + consciousness) / 5;
-        document.getElementById('result').textContent = `Calculated PPS Score: ${ppsScore}%`;
+        document.getElementById('result').textContent = `คะแนน PPS ที่คำนวณได้: ${ppsScore}%`;
+
+        const indicator = document.getElementById('indicator');
+        indicator.style.left = `${ppsScore}%`;
     }
 </script>
 
