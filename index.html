@@ -1,1 +1,122 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palliative Performance Scale Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Palliative Performance Scale (PPS) Form</h1>
+
+<form id="ppsForm">
+    <div class="form-group">
+        <label for="ambulatory">1. How ambulatory is this patient?</label>
+        <select id="ambulatory" required>
+            <option value="">Select</option>
+            <option value="100">Full</option>
+            <option value="90">Reduced</option>
+            <option value="70">Mainly sit/lie</option>
+            <option value="50">Mainly in bed</option>
+            <option value="30">Totally bed bound</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="activity">2. What is the patient's daily level of activity? Is there any evidence of disease?</label>
+        <select id="activity" required>
+            <option value="">Select</option>
+            <option value="100">Normal activity</option>
+            <option value="80">Reduced activity</option>
+            <option value="60">Significant disease</option>
+            <option value="40">Mainly sit/lie</option>
+            <option value="20">Bed bound</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="selfCare">3. How much self-care assistance does this patient require?</label>
+        <select id="selfCare" required>
+            <option value="">Select</option>
+            <option value="100">Full</option>
+            <option value="80">Occasional assistance</option>
+            <option value="60">Considerable assistance</option>
+            <option value="40">Mainly assistance</option>
+            <option value="20">Total care</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="oralIntake">4. How much oral intake does this patient have?</label>
+        <select id="oralIntake" required>
+            <option value="">Select</option>
+            <option value="100">Normal</option>
+            <option value="80">Reduced</option>
+            <option value="60">Minimal</option>
+            <option value="40">Sips only</option>
+            <option value="20">Mouth care only</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="consciousness">5. What is this patient's level of consciousness?</label>
+        <select id="consciousness" required>
+            <option value="">Select</option>
+            <option value="100">Full</option>
+            <option value="80">Confusion</option>
+            <option value="60">Drowsy</option>
+            <option value="40">Coma</option>
+            <option value="20">None</option>
+        </select>
+    </div>
+    <button type="button" onclick="calculatePPS()">Calculate Risk</button>
+</form>
+
+<p id="result"></p>
+
+<script>
+    function calculatePPS() {
+        const ambulatory = parseInt(document.getElementById('ambulatory').value);
+        const activity = parseInt(document.getElementById('activity').value);
+        const selfCare = parseInt(document.getElementById('selfCare').value);
+        const oralIntake = parseInt(document.getElementById('oralIntake').value);
+        const consciousness = parseInt(document.getElementById('consciousness').value);
+
+        if (isNaN(ambulatory) || isNaN(activity) || isNaN(selfCare) || isNaN(oralIntake) || isNaN(consciousness)) {
+            document.getElementById('result').textContent = 'Please fill out all fields.';
+            return;
+        }
+
+        const ppsScore = (ambulatory + activity + selfCare + oralIntake + consciousness) / 5;
+        document.getElementById('result').textContent = `Calculated PPS Score: ${ppsScore}%`;
+    }
+</script>
+
+</body>
+</html>
